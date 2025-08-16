@@ -32,12 +32,15 @@ It (1) collects URLs (sitemap or crawl), (2) renders each page to PDF with **Pla
 ### 1) Pipeline overview
 ```mermaid
 flowchart LR
-    A[Start URL or sitemap.xml] --> B{Collect URLs}
-    B -->|BFS same-domain or sitemap| C[URL list]
-    C --> D[Render each URL with Playwright/Chromium; emulate_media(print); print_background]
-    D --> E[Per-page PDFs]
-    E --> F[Merge with pypdf; add a bookmark per URL]
-    F --> G[Single merged PDF]
+    A[Start URL or sitemap.xml] --> B[Collect URLs]
+    B --> C[URL list]
+    C --> D1[Render with Playwright Chromium]
+    D1 --> D2[Emulate print media]
+    D2 --> D3[Enable print background]
+    D3 --> E[Per-page PDFs]
+    E --> F[Merge with pypdf]
+    F --> G[Add bookmark per URL]
+    G --> H[Single merged PDF]
 ```
 
 ### 2) Concurrency model (workers)
