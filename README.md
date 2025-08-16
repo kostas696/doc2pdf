@@ -34,9 +34,9 @@ It (1) collects URLs (sitemap or crawl), (2) renders each page to PDF with **Pla
 flowchart LR
     A[Start URL or sitemap.xml] --> B{Collect URLs}
     B -->|BFS same-domain or sitemap| C[URL list]
-    C --> D[Render each URL with Playwright/Chromium<br/>emulate_media(print), print_background]
+    C --> D[Render each URL with Playwright/Chromium; emulate_media(print); print_background]
     D --> E[Per-page PDFs]
-    E --> F[Merge with pypdf<br/>+ add a bookmark per URL]
+    E --> F[Merge with pypdf; add a bookmark per URL]
     F --> G[Single merged PDF]
 ```
 
